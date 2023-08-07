@@ -1,0 +1,698 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    min-height: 100vh;
+}
+
+body {
+    background-image: linear-gradient(#934FCE, #C388F9);
+    font-family: 'Baloo', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    color: var(--text);
+    text-align: center;
+}
+
+/* Body scrollbar */
+body::-webkit-scrollbar {
+    width: 18px;
+    transition: 0.5s;
+}
+
+body::-webkit-scrollbar-track {
+    background: var(--square);
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: var(--button);
+    border-radius: 50px;
+    border: 5px solid var(--square);
+}
+
+body::-webkit-scrollbar-thumb:active {
+    border: 4px solid var(--square);
+}
+
+/* Scrollbar for theme */
+.scroll-theme::-webkit-scrollbar {
+    width: 13px;
+    transition: 0.5s;
+}
+
+.scroll-theme::-webkit-scrollbar-track {
+    background: var(--square);
+    border-radius: 50px;
+}
+
+.scroll-theme::-webkit-scrollbar-thumb {
+    background-color: var(--scroll);
+    border-radius: 50px;
+}
+
+
+a {
+    text-decoration: underline;
+    color: var(--text)
+}
+
+a:hover {
+    color: var(--button);
+}
+
+strong {
+    color: var(--button);
+}
+
+.theme-btn span {
+    font-family: "Press Start 2P", sans-serif;
+    font-size: 18px;
+    color: var(--text);
+    z-index: 70;
+}
+
+.theme-btn {
+    overflow: hidden;
+    position: relative;
+    border-radius: 15px;
+    border: none;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    background-image: linear-gradient(-150deg, #934FCE, #7631b8);
+    padding: 2em 1em;
+    z-index: 50;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.theme-btn:after {
+    background: #fff;
+    content: "";
+    height: 250%;
+    left: -80px;
+    opacity: 0.2;
+    position: absolute;
+    top: -50px;
+    transform: rotate(35deg);
+    transition: all 400ms cubic-bezier(0.19, 1, 0.22, 1);
+    width: 50px;
+}
+
+.theme-btn:hover:after {
+    left: 130%;
+    transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.theme-btn:hover {
+    transform: scale(1.05);
+    background-image: linear-gradient(-120deg, #934FCE, #7631b8);
+}
+
+.theme-btn:active {
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+    transform: scale(1);
+}
+
+.theme-input {
+    background: var(--text);
+    box-shadow: 10px 10px 20px 0px rgba(0, 0, 0, 0.53) inset;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    padding: 0 0.5em;
+    font-family: 'Baloo', sans-serif;
+    color: var(--square);
+    font-size: 1.55vw;
+    transition: all 0.2s;
+}
+
+.theme-input:focus {
+    box-shadow: 10px 10px 20px 0px rgba(0, 0, 0, 0.35) inset;
+}
+
+.theme-input::placeholder {
+    color: #7e7e86;
+}
+
+.theme-select {
+    border-radius: 10px;
+    background: var(--text);
+    color: var(--square);
+    font-family: 'Baloo', sans-serif;
+    font-size: 24px;
+    padding: 0.5em 1em;
+    box-shadow: 10px 10px 20px 0px rgba(0, 0, 0, 0.53) inset;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    /* Remove arrow */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    /* Add my customisable arrow */
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='50' height='30' viewBox='0 0 50 30' fill='none' > <path d='M26.3533 29.0244C25.5563 29.9372 24.1371 29.9372 23.3401 29.0244L0.894461 3.31536C-0.23496 2.02174 0.683772 1.26265e-06 2.40105 1.41278e-06L47.2924 5.3373e-06C49.0097 5.48743e-06 49.9284 2.02174 48.799 3.31536L26.3533 29.0244Z' fill='%2337373E'/ > </svg > ");
+    background-repeat: no-repeat;
+    background-position-x: 95%;
+    background-position-y: 50%;
+    background-size: 30px;
+}
+
+.theme-select::-ms-expand {
+    display: none;
+}
+
+.theme-select:hover {
+    box-shadow: 10px 10px 20px 0px rgba(0, 0, 0, 0.35) inset;
+}
+
+/* Change color option selected */
+.theme-select option:checked {
+    background: #5F5F68;
+    color: var(--text);
+}
+
+option:hover {
+    background-color: yellow;
+}
+
+/* Navbar */
+#navbar {
+    position: absolute;
+    font-size: 0.5em;
+}
+
+#navbar > div {
+    position: fixed;
+    width: calc(25% - 39px);
+    /* Why 39px? I don't know, but it works */
+    right: 50px;
+    bottom: 50px;
+    top: 50px;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 50px;
+}
+
+@media (max-height: 700px) {
+    #navbar > div {
+        position: relative;
+    }
+}
+
+@media (max-width: 1000px) {
+    #navbar > div {
+        display: none;
+    }
+}
+
+
+#navbar img {
+    width: 100%;
+    margin: 0 auto 1.5em;
+}
+
+#navbar .theme-box h1 a {
+    text-decoration: none;
+    font-family: "Press Start 2P", sans-serif;
+    font-size: 2.5em;
+    color: var(--text);
+    margin-bottom: min(5vh);
+}
+
+@media (max-width: 1300px) {
+    #navbar .theme-box h1 a {
+        font-size: 1.5em;
+        margin-top: 20px;
+    }
+}
+
+#navbar .spacer {
+    height: 3px;
+    width: 75%;
+    margin: 2.5em auto;
+    background-color: var(--text);
+}
+
+@media (max-width: 1300px) {
+    #navbar .spacer {
+        margin-top: 3vh;
+    }
+}
+
+#navbar .main-links,
+#navbar .secondary-links {
+    display: grid;
+    justify-items: center;
+    justify-content: center;
+    font-size: 3em;
+    line-height: 1.5em;
+    margin-bottom: min(1vh);
+}
+
+
+@media (max-width: 1300px) {
+
+    #navbar .main-links,
+    #navbar .secondary-links {
+        font-size: 2em;
+    }
+}
+
+@media (max-width: 1500px) {
+
+    #navbar .main-links,
+    #navbar .secondary-links {
+        font-size: 2.5em;
+    }
+}
+
+#navbar .main-links {
+    margin-top: min(1vh);
+    gap: 3vh;
+    line-height: 1.5em;
+}
+
+#navbar .main-links a {
+    font-size: 2em;
+    text-decoration: none;
+    transition: all 0.5s;
+}
+
+#navbar .main-links .dashboard {
+    margin-bottom: min(8vh);
+}
+
+#navbar .secondary-links a {
+    text-decoration: none;
+    transition: all 0.5s;
+}
+
+#navbar a:hover {
+    transform: scale(1.05);
+}
+
+#navbar a.active {
+    text-decoration: underline;
+    text-decoration-color: var(--title);
+    text-decoration-thickness: 3px;
+    color: var(--button);
+    transform: scale(1.05);
+
+}
+
+#navbar .secondary-links {
+    margin-top: auto;
+}
+
+#navbar a {
+    position: relative;
+    width: fit-content;
+}
+
+#navbar .main-links a:not(.active):after,
+#navbar .secondary-links a:not(.active):after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    display: block;
+    right: 0;
+    background: var(--title);
+    transition: width .2s ease;
+    -webkit-transition: width .2s ease;
+}
+
+#navbar .secondary-links a:not(.active):after {
+    bottom: 7px;
+}
+
+#navbar .main-links a:not(.active):after {
+    top: 32px;
+}
+
+#navbar .main-links a:not(.active):hover:after,
+#navbar .secondary-links a:not(.active):hover:after {
+    width: 100%;
+    left: 0;
+    background: var(--title);
+}
+
+/* Footer */
+footer h6 {
+    font-size: 1.5rem;
+    margin-top: 1em;
+    color: var(--square);
+}
+
+footer a {
+    color: var(--square);
+    transition: 0.2s;
+}
+
+/* Display page */
+#root {
+    padding: 50px;
+    min-height: 100vh;
+}
+
+.mainContainer {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-gap: 50px;
+    min-height: calc(100vh - 100px);
+}
+
+.contentContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+section#home > div,
+.theme-box {
+    border-radius: 15px;
+    background: #37373E;
+    box-shadow: 10px 10px 4px 0px rgba(0, 0, 0, 0.25);
+    width: 100%;
+    padding: 30px;
+}
+
+/* Homepage */
+#home {
+    display: grid;
+    grid-template-rows: repeat(4, auto);
+    grid-gap: 25px;
+}
+
+#home .header-title {
+    font-size: 2rem;
+    line-height: 2.5em;
+    padding: 1em;
+}
+
+#home .start-extension {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#home .start-extension h4 {
+    font-size: 30px;
+}
+
+#home .about-header-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+#home .about-header {
+    width: 33.33%;
+}
+
+#home .about-header h3 {
+    font-size: 70px;
+}
+
+#home .about-header h5 {
+    font-size: 24px;
+}
+
+#home .about-extension-container {
+    display: grid;
+    grid-template-rows: repeat(3, auto);
+    grid-gap: 70px;
+}
+
+#home .about-description {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#home .about-description.right {
+    flex-direction: row-reverse;
+}
+
+#home .about-description h3 {
+    font-size: 48px;
+    color: var(--title);
+    margin-bottom: 0.5em;
+}
+
+#home .about-description p {
+    font-size: 24px;
+    text-align: left;
+}
+
+#home .about-description.right p {
+    text-align: right;
+}
+
+#home .about-description img {
+    width: 25vw;
+    margin-right: 0;
+    margin-left: 20px;
+    border-radius: 5px;
+    box-shadow: 3px 2px 5px rgba(0, 0, 0, 0.555);
+}
+
+#home .about-description.right img {
+    margin-right: 20px;
+    margin-left: 0;
+}
+
+/* Error 404 */
+#error {
+    position: relative;
+    width: fit-content;
+    margin: auto;
+}
+
+#error h2 {
+    color: var(--title);
+    font-size: 48px;
+}
+
+#error h4 {
+    font-size: 40px;
+}
+
+#error img {
+    height: 250px;
+    position: absolute;
+    left: 0;
+    top: -229px;
+}
+
+/* Dashboard */
+#dashboard {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(3, auto);
+    grid-gap: 50px;
+}
+
+#dashboard > div {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+@media (min-width: 1700px) {
+    #dashboard {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    #dashboard .welcome {
+        grid-column: 1 / 3;
+    }
+}
+
+#dashboard h2 {
+    font-size: 2.1rem;
+}
+
+#dashboard h3 {
+    font-size: 2rem;
+    color: var(--title)
+}
+
+#dashboard .theme-select {
+    position: relative;
+    width: 100%; /* Ajustez la largeur en fonction de vos besoins */
+    font-size: 1.2vw;
+
+}
+
+#dashboard .custom-option {
+    padding: 10px;
+    background-color: transparent;
+    cursor: pointer;
+    transition: background-color 0.3s ease; 
+}
+
+#dashboard .custom-option:hover {
+    background-color: var(--square);
+    color: var(--text);
+}
+
+
+#dashboard .setting .requestButton {
+    margin-top: 30px;
+}
+
+/* #dashboard .setting .microphone-devices {
+    width: 100%;
+    font-size: 1.2vw;
+}
+
+#dashboard .setting .microphone-devices p {
+    width: 80%;
+    font-size: 1.2vw;
+} */
+
+#dashboard .setting .setting-options {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    margin-top: 30px;
+}
+
+.theme-btn.mute.muted {
+    background-image: linear-gradient(#2B2B2B, #2B2B2B);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+}
+
+.theme-btn.listening.start {
+    background-image: linear-gradient(#2B2B2B, #2B2B2B);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+}
+
+#dashboard .languages .lang-list {
+    padding: 0.5em 1em 0.5em 0;
+    background-color: #D9D9D9;
+    box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.25) inset;
+    border-radius: 10px;
+    margin-top: 5px;
+}
+
+#dashboard .languages .lang-list * {
+    font-family: 'Baloo', sans-serif;
+    overflow: hidden;
+}
+
+#dashboard .languages .lang-list.right {
+    height: 300px;
+}
+
+#dashboard .languages .lang-list > .scroll-theme {
+    height: 100%;
+    overflow: auto;
+    padding: 0;
+}
+
+#dashboard .languages .language-title {
+    font-size: 20px;
+}
+
+#dashboard .languages .search-input {
+    margin: 0.5em 0;
+}
+
+#dashboard .languages .search-input input {
+    color: var(--button);
+    font-family: 'Baloo', sans-serif;
+}
+
+/* For a question of selector weight I don't call #dashboard .languages */
+.search-input label {
+    font-family: 'Baloo', sans-serif;
+    color: #5F5F68;
+    background-image: linear-gradient(180deg, var(--text) 65%, transparent);
+    border-radius: 10px;
+    
+}
+
+.search-input label.MuiInputLabel-shrink {
+    padding: 0 1em;
+    border: 2px solid var(--button);
+}
+
+#dashboard .languages .transfer-list-container .MuiInputBase-input {
+    background-color: #D9D9D9;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.25) inset;
+}
+
+#dashboard .languages .switch-btn {
+    cursor: pointer;
+}
+
+#dashboard .languages .switch-btn:disabled svg path {
+    fill: #5F5F68;
+}
+
+#dashboard .languages .switch-btn:not(:disabled):hover {
+    background-color: var(--button);
+}
+
+#dashboard .banned .ban_words {
+    border-radius: 10px;
+    background: #D9D9D9;
+    box-shadow: 10px -10px 20px 5px rgba(0, 0, 0, 0.25) inset;
+    list-style: none;
+    text-align: left;
+    padding: 20px;
+    font-size: 1.75rem;
+    line-height: 1.2em;
+    max-height: calc(10.5rem + 40px);
+    /* result of 1.75rem * 1.2 * 5 + 20px * 2  */
+    overflow-y: auto;
+}
+
+#dashboard .banned .ban_words ul {
+    overflow-y: auto;
+    max-height: 10.5rem;
+    color: var(--square);
+}
+
+#dashboard .banned .ban_words li {
+    display: flex;
+    align-items: center;
+}
+
+#dashboard .banned .ban_words li button {
+    margin-right: 15px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+#dashboard .banned .ban_words .cross {
+    color: #7643A4;
+    font-family: "Press Start 2P", sans-serif;
+    font-size: 0.75em;
+}
+
+
+#dashboard .banned form,
+#dashboard .api form {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    margin-right: 0;
+    gap: 1em;
+}
+
+#dashboard .banned form input,
+#dashboard .api form input {
+    width: 100%;
+}
+
+#dashboard .banned form button,
+#dashboard .api form button {
+    min-width: fit-content;
+}
